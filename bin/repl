@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/monkey'
+
+PROMPT = '>> '
+
+loop do
+  print PROMPT
+  input = gets.chomp
+  break unless input
+
+  p input
+  lexer = Lexer.new(input)
+  while (tok = lexer.next_token).type != Lexer::TOKEN_TYPES[:EOF]
+    p tok
+  end
+end
